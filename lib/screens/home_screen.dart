@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('Adding new Todo');
+          Navigator.pushNamed(context, '/create-todo');
         },
         child: Icon(Icons.add),
       ),

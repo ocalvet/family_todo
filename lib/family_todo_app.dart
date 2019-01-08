@@ -1,3 +1,4 @@
+import 'package:family_todo/screens/create_todo_screen.dart';
 import 'package:family_todo/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,11 @@ class FamilyTodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       title: 'Family Todo',
-      home: HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/create-todo': (context) => CreateTodoScreen(),
+      },
     );
   }
 }
