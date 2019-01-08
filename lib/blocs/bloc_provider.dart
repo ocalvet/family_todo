@@ -1,4 +1,3 @@
-// Generic BLoC provider
 import 'package:family_todo/blocs/bloc_base.dart';
 import 'package:flutter/material.dart';
 
