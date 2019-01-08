@@ -26,10 +26,15 @@ class TodoTile extends StatelessWidget {
                   Text(todo.description),
                 ],
               ),
-              Expanded(child: Container(),),
-              Checkbox(onChanged: (bool value) {
-                print('changing todo ${todo.title} to $value');
-              }, value: todo.completed,)
+              Expanded(
+                child: Container(),
+              ),
+              Checkbox(
+                onChanged: (bool value) {
+                  print('changing todo ${todo.title} to $value');
+                },
+                value: todo.completed,
+              )
             ],
           ),
         ),

@@ -7,34 +7,42 @@ class CreateTodoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TodoBloc bloc = BlocProvider.of<TodoBloc>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('New Todo'),
-        ),
-        body: Column(
-          children: <Widget>[
-            StreamBuilder(
+      appBar: AppBar(
+        title: Text('New Todo'),
+      ),
+      body: Column(
+        children: <Widget>[
+          StreamBuilder(
+            stream: bloc.todoTitle$,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return TextField(
+                decoration: InputDecoration(
+                  hintText: 'Todo title',
+                ),
+                onChanged: bloc.changeTitle,
+              );
+            },
+          ),
+          TextField(
+            decoration: InputDecoration(hintText: 'Todo description'),
+            onChanged: bloc.changeDescription,
+          ),
+          StreamBuilder(
               stream: bloc.todoTitle$,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                return TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Todo title',
-                  ),
-                  onChanged: bloc.changeTitle,
+              builder: (context, snapshot) {
+                print('$snapshot');
+                return RaisedButton(
+                  child: Text('Submit'),
+                  onPressed: snapshot.hasError
+                      ? null
+                      : () {
+                          print('Saving todo');
+                          Navigator.pushNamed(context, '/');
+                        },
                 );
-              },
-            ),
-            TextField(
-              decoration: InputDecoration(hintText: 'Todo description'),
-              onChanged: bloc.changeDescription,
-            ),
-            RaisedButton(
-              child: Text('Submit'),
-              onPressed: () {
-                print('Saving todo');
-                Navigator.pushNamed(context, '/');
-              },
-            )
-          ],
-        ));
+              })
+        ],
+      ),
+    );
   }
 }
