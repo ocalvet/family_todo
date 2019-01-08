@@ -1,6 +1,20 @@
+import 'package:family_todo/models/todo.dart';
+import 'package:family_todo/widgets/todo_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  final List<Todo> todos = [
+    Todo(
+      title: "Hello",
+      description: "some description",
+      completed: false,
+    ),
+    Todo(
+      title: "Hello 1",
+      description: "some description 1",
+      completed: true,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +22,13 @@ class HomeScreen extends StatelessWidget {
         title: Text('Home'),
       ),
       body: Container(
-        child: Text('Home Screen'),
+        child: TodoList(todos: todos),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('Adding new Todo');
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
